@@ -30,3 +30,16 @@ app.get("/api/hello", function (req, res) {
 var listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+
+app.get("/api/:date?", (req, res) => {
+  const { date } = req.params;
+  let date1;
+  if (!date1) {
+    date1 = new Date();}else{
+      let date1 = new Date(date)
+    }
+ 
+  res.json({unix: date1.getTime(), utc: date1.toUTCString()});
+});
+
